@@ -4,29 +4,14 @@ import './App.css';
 import { Autocomplete, Button, TextField, ThemeProvider } from '@mui/material';
 import ListBadDrivers from './ListBadDrivers';
 import darkTheme from './Theme';
+import badDriverReasons from './BadDriverReasons';
+import licensePlates from './LicensePlates';
 
 const websideTitle = 'DÅRLIG BILIST';
-
-const licensePlates = [
-  { label: 'CS87107' },
-]
-
-const badDriverReasons = [
-  { label: 'Kører for stærkt' },
-  { label: 'Kører for langsomt' },
-  { label: 'Kører i venstre spor' },
-  { label: 'Kører i højre spor' },
-  { label: 'Kører i midterste spor' },
-  { label: 'Kører i cykelstien' },
-  { label: 'Kører i fodgængerfeltet' },
-  { label: 'Kører i busbanen' },
-]
 
 function LicensePlateInput() {
   return (
     <Autocomplete
-      disablePortal
-      id="license-plate-input"
       options={licensePlates}
       freeSolo
       renderInput={(params) => <TextField autoFocus {...params} label="Nummerplade" />}
@@ -37,8 +22,6 @@ function LicensePlateInput() {
 function BadDriverReason() {
   return (
     <Autocomplete
-      disablePortal
-      id="bad-driver-reason-input"
       options={badDriverReasons}
       freeSolo
       renderInput={(params) => <TextField {...params} label="Grund" />}
