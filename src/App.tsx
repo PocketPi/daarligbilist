@@ -28,7 +28,6 @@ function LicensePlateInput() {
       disablePortal
       id="license-plate-input"
       options={licensePlates}
-      sx={{ width: 300 }}
       freeSolo
       renderInput={(params) => <TextField autoFocus {...params} label="Nummerplade" />}
     />
@@ -41,7 +40,6 @@ function BadDriverReason() {
       disablePortal
       id="bad-driver-reason-input"
       options={badDriverReasons}
-      sx={{ width: 300 }}
       freeSolo
       renderInput={(params) => <TextField {...params} label="Grund" />}
     />
@@ -50,8 +48,7 @@ function BadDriverReason() {
 
 function SendButton() {
   return (
-    <Button sx={{ width: 300 }}
-      variant="contained">Send</Button>
+    <Button variant="contained">Send</Button>
   );
 }
 
@@ -63,9 +60,11 @@ function App() {
           <Typography variant="h2">
             {websideTitle}
           </Typography>
+          <p />
           <LicensePlateInput />
           <BadDriverReason />
           <SendButton />
+          <p />
           <ListBadDrivers />
         </ThemeProvider>
       </header>

@@ -25,10 +25,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.grey[900],
         color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-        fontSize: 14,
-    },
+    }
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -43,7 +40,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 function ListBadDrivers() {
     return (
-        <Table sx={{ width: 300 }} size="small">
+        <Table size="small">
             <TableHead>
                 <StyledTableRow>
                     <StyledTableCell>Nummerplade</StyledTableCell>
