@@ -33,12 +33,6 @@ function BadDriverReason() {
   );
 }
 
-function SendButton() {
-  return (
-    <Button variant="contained">Send</Button>
-  );
-}
-
 function App() {
   const [data, setData] = React.useState<Data>({ Message: "" });
   const fetchData = React.useCallback(async () => {
@@ -65,9 +59,11 @@ function App() {
             {websideTitle}
           </Typography>
           <p />
-          <LicensePlateInput />
-          <BadDriverReason />
-          <SendButton />
+          <form method='GET'>
+            <LicensePlateInput />
+            <BadDriverReason />
+            <Button type="submit" variant="contained">Send</Button>
+          </form>
           <p />
           <ListBadDrivers />
           <Button variant="contained">Vis flere</Button>
