@@ -12,7 +12,7 @@ server.use(cors());
 const port = process.env.PORT || 4000;
 
 server.get('/api', (req, res, next) => {
-    res.json({ message: 'Hello, Express TypeScript!' });
+    res.send({ Message: "React client connected to the Express server!" });
 });
 
 server.listen(port, () => {
