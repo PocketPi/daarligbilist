@@ -34,13 +34,13 @@ function BadDriverReason() {
 }
 
 function App() {
-  const [data, setData] = React.useState<Data>({ Message: "" });
+  const [data, setData] = React.useState<Data>({ Message: "asdf" });
   const fetchData = React.useCallback(async () => {
-    axios.get("http://localhost:4000/users/").then((res) => setData(res.data));
+    axios.get("http://localhost:4000/api/").then((res) => setData(res.data));
   }, []);
 
   const sendData = React.useCallback(async () => {
-    axios.post("http://localhost:4000/users/", { text: "Data from React" });
+    axios.post("http://localhost:4000/api/", { text: "Data from React" });
   }, []);
 
   React.useEffect(() => {
@@ -51,6 +51,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+      </header>
+      <body>
         <ThemeProvider theme={darkTheme}>
           <Typography variant="h2">{websideTitle}</Typography>
           <p />
@@ -65,10 +67,10 @@ function App() {
           <ListBadDrivers />
           <Button variant="contained">Vis flere</Button>
           <p />
+          data from server: {data.Message}
         </ThemeProvider>
-        {data.Message}
-      </header>
-    </div>
+      </body>
+    </div >
   );
 }
 
