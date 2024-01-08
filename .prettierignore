@@ -1,0 +1,9 @@
+dist
+build
+cache
+src/**/generated
+node_modules
+temp
+coverage
+.env
+*.md

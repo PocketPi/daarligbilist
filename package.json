@@ -1,15 +1,17 @@
 {
-  "dependencies": {
-    "express-generator": "^4.16.1"
-  },
-  "devDependencies": {
-    "concurrently": "^8.2.2",
-    "nodemon": "^3.0.2"
-  },
   "scripts": {
     "server": "yarn --cwd api start",
     "client": "yarn --cwd client start",
     "dev": "concurrently \"yarn server\" \"yarn client\"",
-    "build": "yarn --cwd client build"
+    "build": "yarn --cwd client build",
+    "format": "yarn prettier --write ."
+  },
+  "dependencies": {
+    "express-generator": "^4.16.1",
+    "prettier": "^3.1.1"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.2"
   }
 }
