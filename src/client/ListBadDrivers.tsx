@@ -1,22 +1,8 @@
 import { Table, TableBody, TableCell, TableHead, TableRow, styled, tableCellClasses } from "@mui/material";
 import React from "react";
-
-function createData(numberplate: string, count: number) {
-  return { numberplate, count };
-}
-
-const rows = [
-  createData("CS87100", 39),
-  createData("CS87101", 38),
-  createData("CS87102", 37),
-  createData("CS87103", 36),
-  createData("CS87104", 35),
-  createData("CS87105", 34),
-  createData("CS87106", 33),
-  createData("CS87107", 32),
-  createData("CS87108", 32),
-  createData("CS87109", 31),
-];
+import { getBadDrivers } from "./queries";
+import { get } from "http";
+import { BadDriverInfoInterface, APIResponseInterface } from "../shared/types";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -36,6 +22,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 function ListBadDrivers() {
+  const data = getBadDrivers();
+  if (data.length === 0) return null;
+
   return (
     <Table size="small">
       <TableHead>
@@ -45,10 +34,10 @@ function ListBadDrivers() {
         </StyledTableRow>
       </TableHead>
       <TableBody>
-        {rows.map((row) => (
-          <StyledTableRow key={row.numberplate}>
+        {data.map((row) => (
+          <StyledTableRow key={row.licensplate}>
             <StyledTableCell component="th" scope="row">
-              {row.numberplate}
+              {row.licensplate}
             </StyledTableCell>
             <StyledTableCell align="right">{row.count}</StyledTableCell>
           </StyledTableRow>
