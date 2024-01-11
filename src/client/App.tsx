@@ -5,7 +5,8 @@ import ListBadDrivers from "./ListBadDrivers";
 import darkTheme from "./Theme";
 import badDriverReasons from "./BadDriverReasons";
 import licensePlates from "./LicensePlates";
-import axios from "axios";
+import { Form, Formik, FormikHelpers } from "formik";
+import { BadDriverReportInterface } from "../shared/types";
 
 interface Data {
   Message: string;
@@ -13,48 +14,51 @@ interface Data {
 
 const websideTitle = "DÅRLIG BILIST";
 
-function LicensePlateInput() {
-  return (
-    <Autocomplete
-      options={licensePlates}
-      freeSolo
-      renderInput={(params) => <TextField autoFocus {...params} label="Nummerplade" />}
-    />
-  );
-}
-
-function BadDriverReason() {
-  return (
-    <Autocomplete
-      options={badDriverReasons}
-      freeSolo
-      renderInput={(params) => <TextField {...params} label="Grund" />}
-    />
-  );
-}
+const initialValues: BadDriverReportInterface = {
+  licensplate: "",
+  reason: "",
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header"></header>
-      {/* <body className="App-body"> */}
-      <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={darkTheme}>
+      <main className="App">
         <Typography variant="h2">{websideTitle}</Typography>
         <p />
-        <form method="GET">
-          <LicensePlateInput />
-          <BadDriverReason />
-          <Button type="submit" variant="contained">
-            Send
-          </Button>
-        </form>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={(values: BadDriverReportInterface, { setSubmitting }: FormikHelpers<BadDriverReportInterface>) => {
+            alert(JSON.stringify(values, null, 2));
+            setSubmitting(false);
+          }}
+        >
+          <Form>
+            <Autocomplete
+              id="licensplate"
+              options={licensePlates}
+              freeSolo
+              style={{ width: 300 }}
+              renderInput={(params) => <TextField autoFocus label="Nummerplade" {...params} />}
+            />
+            <Autocomplete
+              id="reason"
+              options={badDriverReasons}
+              freeSolo
+              style={{ width: 300 }}
+              renderInput={(params) => <TextField label="Grund" {...params} />}
+            />
+            <Button type="submit" variant="contained">
+              Send
+            </Button>
+          </Form>
+        </Formik>
+
         <p />
         <ListBadDrivers />
         <Button variant="contained">Vis flere</Button>
         <p />
-      </ThemeProvider>
-      {/* </body> */}
-    </div>
+      </main>
+    </ThemeProvider>
   );
 }
 

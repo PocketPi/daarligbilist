@@ -3,6 +3,7 @@ dotenv.config();
 
 import express from "express";
 import cors from "cors";
+import { BadDriverInfoInterface } from "../shared/types";
 
 const server = express();
 
@@ -11,7 +12,7 @@ server.use(cors());
 
 const port = process.env.PORT || 4000;
 
-const badDrivers = [
+const badDrivers: BadDriverInfoInterface[] = [
   {
     licensplate: "CS87100",
     count: 39,
@@ -59,10 +60,6 @@ server.get("/api", (req, res, next) => {
 });
 
 server.get("/api/top10", (req, res, next) => {
-  res.send({ badDrivers });
-});
-
-server.post("/api/top10", (req, res, next) => {
   res.send({ badDrivers });
 });
 

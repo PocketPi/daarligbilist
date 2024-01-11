@@ -1,8 +1,6 @@
 import { Table, TableBody, TableCell, TableHead, TableRow, styled, tableCellClasses } from "@mui/material";
 import React from "react";
 import { getBadDrivers } from "./queries";
-import { get } from "http";
-import { BadDriverInfoInterface, APIResponseInterface } from "../shared/types";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
