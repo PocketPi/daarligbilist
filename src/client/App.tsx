@@ -5,7 +5,7 @@ import ListBadDrivers from "./ListBadDrivers";
 import darkTheme from "./Theme";
 import badDriverReasons from "./BadDriverReasons";
 import licensePlates from "./LicensePlates";
-import { Form, useFormik, Formik } from "formik";
+import { Form, useFormik } from "formik";
 import { BadDriverReportInterface } from "../shared/types";
 import * as yup from "yup";
 
@@ -21,64 +21,59 @@ const initialValues: BadDriverReportInterface = {
   reason: "",
 };
 
-function App() {
+const ReportBadDriverForm = () => {
   const formik = useFormik({
     initialValues: initialValues,
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
+    onSubmit: (values) => console.log(JSON.stringify(values, null, 4)),
+    validationSchema: yup.object({
+      licensplate: yup.string().required(),
+      reason: yup.string().required(),
+    }),
   });
+  return (
+    <form onSubmit={formik.handleSubmit}>
+      <Autocomplete
+        id="licensplate"
+        options={licensePlates}
+        freeSolo
+        style={{ width: 300 }}
+        onChange={(e, value) => formik.setFieldValue("licensplate", value)}
+        renderInput={(params) => (
+          <TextField
+            autoFocus
+            label="Nummerplade"
+            {...formik.getFieldProps("licensplate")}
+            {...params}
+          />
+        )}
+      />
+      <Autocomplete
+        id="reason"
+        options={badDriverReasons}
+        freeSolo
+        style={{ width: 300 }}
+        onChange={(e, value) => formik.setFieldValue("reason", value)}
+        renderInput={(params) => (
+          <TextField
+            label="Grund"
+            {...formik.getFieldProps("reason")}
+            {...params} />
+        )}
+      />
+      <Button fullWidth type="submit" variant="contained">
+        Send
+      </Button>
+    </form>
+  );
+};
 
+function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <main className="App">
         <Typography variant="h2">{websideTitle}</Typography>
         <p />
-        <Formik
-          initialValues={initialValues}
-          onSubmit={({ licensplate }) => {
-            alert("Submit " + licensplate);
-          }}
-        >
-          {({ handleChange, values, setFieldValue }) => (
-            <Form>
-              <Autocomplete
-                id="licensplate"
-                options={licensePlates}
-                freeSolo
-                style={{ width: 300 }}
-                onChange={(event, value) => {
-                  setFieldValue("licensplate", value);
-                }}
-                renderInput={(params) => (
-                  <TextField
-                    autoFocus
-                    label="Nummerplade"
-                    value={values.licensplate}
-                    onChange={handleChange}
-                    {...params}
-                  />
-                )}
-              />
-              <Autocomplete
-                id="reason"
-                options={badDriverReasons}
-                freeSolo
-                style={{ width: 300 }}
-                onChange={(event, value) => {
-                  setFieldValue("reason", value);
-                }}
-                renderInput={(params) => (
-                  <TextField label="Grund" value={values.reason} onChange={handleChange} {...params} />
-                )}
-              />
-              <Button fullWidth type="submit" variant="contained">
-                Send
-              </Button>
-            </Form>
-          )}
-        </Formik>
+        <ReportBadDriverForm />
         <p />
         <ListBadDrivers />
         <Button variant="contained">Vis flere</Button>
