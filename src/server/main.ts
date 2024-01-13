@@ -63,6 +63,11 @@ server.get("/api/top10", (req, res, next) => {
   res.send({ badDrivers });
 });
 
+server.post("/api/report_bad_driver", (req, res, next) => {
+  const report: BadDriverInfoInterface = req.body;
+  console.log(report);
+});
+
 server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

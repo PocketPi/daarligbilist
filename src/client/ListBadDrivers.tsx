@@ -19,7 +19,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function ListBadDrivers() {
+export default function ListBadDrivers() {
   const data = getBadDrivers();
   if (data.length === 0) return null;
 
@@ -44,5 +44,3 @@ function ListBadDrivers() {
     </Table>
   );
 }
-
-export default ListBadDrivers;
