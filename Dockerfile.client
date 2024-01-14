@@ -1,0 +1,25 @@
+FROM node:alpine AS builder
+
+WORKDIR /
+
+COPY package.json /
+COPY yarn.lock /
+
+RUN yarn
+
+COPY public /
+COPY src/client src/client
+COPY src/shared src/shared
+COPY tsconfig.json /
+COPY .env /
+COPY index.html /
+COPY vite.config.mts /
+
+RUN yarn build:client
+
+FROM nginx:stable-alpine
+COPY --from=builder /build /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]

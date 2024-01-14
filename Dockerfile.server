@@ -1,0 +1,26 @@
+FROM node:alpine
+
+WORKDIR /
+
+COPY package.json /
+COPY yarn.lock /
+
+RUN yarn
+
+COPY prisma /
+COPY public /
+COPY src/server src/server
+COPY src/shared src/shared
+COPY tsconfig.json /
+COPY .env /
+COPY index.html /
+
+RUN yarn prisma generate
+RUN yarn build:ts
+
+EXPOSE 4000
+
+ENV MONGODB_USERNAME=user
+ENV MONGODB_PASSWORD=password
+
+CMD ["yarn", "start:server"]
