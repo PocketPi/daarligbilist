@@ -1,73 +1,45 @@
-import dotenv from "dotenv";
-dotenv.config();
+import dotenv from 'dotenv'
 
-import express from "express";
-import cors from "cors";
-import { BadDriverInfoInterface } from "../shared/types";
+import express from 'express'
+import cors from 'cors'
+import { type BadDriverReportInterface } from '../shared/types'
+import { PrismaClient } from '@prisma/client'
+import { testData } from './GenerateTestData'
+dotenv.config()
 
-const server = express();
+const prisma = new PrismaClient()
 
-server.use(express.json());
-server.use(cors());
+const server = express()
 
-const port = process.env.PORT || 4000;
+server.use(express.json())
+server.use(cors())
 
-const badDrivers: BadDriverInfoInterface[] = [
-  {
-    licensplate: "CS87100",
-    count: 39,
-  },
-  {
-    licensplate: "CS87101",
-    count: 38,
-  },
-  {
-    licensplate: "CS87102",
-    count: 37,
-  },
-  {
-    licensplate: "CS87103",
-    count: 36,
-  },
-  {
-    licensplate: "CS87104",
-    count: 35,
-  },
-  {
-    licensplate: "CS87105",
-    count: 34,
-  },
-  {
-    licensplate: "CS87106",
-    count: 33,
-  },
-  {
-    licensplate: "CS87107",
-    count: 32,
-  },
-  {
-    licensplate: "CS87108",
-    count: 32,
-  },
-  {
-    licensplate: "CS87109",
-    count: 31,
-  },
-];
+const port = process.env.SERVER_PORT ?? 4000
 
-server.get("/api", (req, res, next) => {
-  res.send({ Message: "React client connected to the Express server!" });
-});
+server.get('/api/top10', (_req, res) => {
+  res.status(404).json({ message: 'Not implemented' })
+})
 
-server.get("/api/top10", (req, res, next) => {
-  res.send({ badDrivers });
-});
+server.post('/api/report_bad_driver', (req, res) => {
+  const report: BadDriverReportInterface = req.body
+  void
+  prisma.bad_drivers.create({
+    data: {
+      licensplate: report.licensplate,
+      reason: report.reason
+    }
+  })
+})
 
-server.post("/api/report_bad_driver", (req, res, next) => {
-  const report: BadDriverInfoInterface = req.body;
-  console.log(report);
-});
+server.get('/api/create_test_data', (_req, res) => {
+  void prisma.bad_drivers.createMany({
+    data: testData
+  })
+  res.status(200).json({
+    message: 'Test data created'
+  })
+})
 
 server.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+  console.log(`Server is running on port ${port}`)
+})

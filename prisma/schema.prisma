@@ -1,0 +1,19 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["selectRelationCount"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model bad_drivers {
+  id          Int      @id @default(autoincrement())
+  timestamp   DateTime? @default(now()) @db.Timestamp(6)
+  licensplate String   @db.Char(16)
+  reason      String   @db.VarChar(255)
+}

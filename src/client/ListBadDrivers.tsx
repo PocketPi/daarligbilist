@@ -1,27 +1,27 @@
-import { Table, TableBody, TableCell, TableHead, TableRow, styled, tableCellClasses } from "@mui/material";
-import React from "react";
-import { getBadDrivers } from "./queries";
+import { Table, TableBody, TableCell, TableHead, TableRow, styled, tableCellClasses } from '@mui/material'
+import React from 'react'
+import { getBadDrivers } from './queries'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.grey[900],
-    color: theme.palette.common.white,
-  },
-}));
+    color: theme.palette.common.white
+  }
+}))
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover
   },
   // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
+  '&:last-child td, &:last-child th': {
+    border: 0
+  }
+}))
 
-export default function ListBadDrivers() {
-  const data = getBadDrivers();
-  if (data.length === 0) return null;
+export default function ListBadDrivers (): any {
+  const data = getBadDrivers()
+  if (data.length === 0) return null
 
   return (
     <Table size="small">
@@ -42,5 +42,5 @@ export default function ListBadDrivers() {
         ))}
       </TableBody>
     </Table>
-  );
+  )
 }

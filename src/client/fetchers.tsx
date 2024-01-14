@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios from 'axios'
 
-export async function get<T>(path: string): Promise<T> {
+export async function get<T> (path: string): Promise<T> {
   try {
-    const { data } = await axios.get(path);
-    return data;
+    const { data } = await axios.get(path)
+    return data
   } catch (error) {
-    console.log("error" + error);
-    return Promise.reject(error);
+    console.log(error)
+    return await Promise.reject(error)
   }
 }
