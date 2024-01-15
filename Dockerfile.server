@@ -12,15 +12,18 @@ COPY public /
 COPY src/server src/server
 COPY src/shared src/shared
 COPY tsconfig.json /
-COPY .env /
 COPY index.html /
+
+ENV MONGODB_USERNAME=user
+ENV MONGODB_PASSWORD=password
+ENV MONGO_INITDB_DATABASE=daarligbilist
+ENV SERVER_PORT=4000
+ENV DATABASE_URL="postgresql://user:password@server:5432/daarligbilist?schema=public"
 
 RUN yarn prisma generate
 RUN yarn build:ts
 
 EXPOSE 4000
 
-ENV MONGODB_USERNAME=user
-ENV MONGODB_PASSWORD=password
 
 CMD ["yarn", "start:server"]

@@ -18,6 +18,8 @@ services:
     restart: always
     ports:
       - 8888:8080
+    depends_on:
+      - db
 
   server:
     image: server
@@ -38,6 +40,7 @@ services:
     restart: always
     ports:
       - 80:8080
+      - 443:8080
     depends_on:
       - server
     tty: true
