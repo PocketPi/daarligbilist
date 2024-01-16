@@ -21,7 +21,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function ListBadDrivers (): any {
   const data = getBadDrivers()
-  if (data.length === 0) return null
+  // if (data.length === 0) return null
 
   return (
     <Table size="small">

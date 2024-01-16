@@ -7,7 +7,7 @@ export const getBadDrivers = (): BadDriverInfoInterface[] => {
   const [data, setData] = useState<BadDriverInfoInterface[]>([])
 
   const getData = async (): Promise<void> => {
-    const { badDrivers } = await get<APIResponseInterface>('http://localhost:4000/api/top10')
+    const { badDrivers } = await get<APIResponseInterface>('http://localhost:3000/api/top10')
     setData(badDrivers)
   }
 
@@ -20,7 +20,7 @@ export const getBadDrivers = (): BadDriverInfoInterface[] => {
 
 export async function reportBadDriver (report: BadDriverReportInterface): Promise<void> {
   try {
-    void axios.post<BadDriverReportInterface>('http://localhost:4000/api/report_bad_driver', report)
+    void axios.post<BadDriverReportInterface>('http://localhost:3000/api/report_bad_driver', report)
   } catch (error) {
     console.log(error)
   }

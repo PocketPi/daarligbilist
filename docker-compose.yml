@@ -17,30 +17,15 @@ services:
     image: adminer
     restart: always
     ports:
-      - 8888:8080
+      - 8080:8080
     depends_on:
       - db
 
   server:
     image: server
-    build:
-      dockerfile: Dockerfile.server
-      context: .
+    build: ./
     restart: always
     ports:
-      - 4000:4000
+      - 3000:3000
     depends_on:
       - db
-
-  client:
-    image: client
-    build:
-      dockerfile: Dockerfile.client
-      context: .
-    restart: always
-    ports:
-      - 80:8080
-      - 443:8080
-    depends_on:
-      - server
-    tty: true

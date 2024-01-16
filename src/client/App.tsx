@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
-import { Button, TextField, ThemeProvider, Typography } from '@mui/material'
-// import ListBadDrivers from './ListBadDrivers'
+import { Box, Button, Container, TextField, ThemeProvider, Typography } from '@mui/material'
+import ListBadDrivers from './ListBadDrivers'
 import darkTheme from './Theme'
 import { useFormik } from 'formik'
 import { type BadDriverReportInterface } from '../shared/types'
@@ -75,15 +75,17 @@ const ReportBadDriverForm = (): any => {
 function App (): any {
   return (
     <ThemeProvider theme={darkTheme}>
-      <main className="App">
+      <Container className="App" sx={{ flexDirection: 'column', display: 'flex' }}>
         <Typography variant="h2">{websideTitle}</Typography>
         <p />
-        <ReportBadDriverForm />
+        <Box sx={{ maxWidth: 480, alignSelf: 'center' }}>
+          <ReportBadDriverForm />
+          <p />
+          <ListBadDrivers />
+          <Button variant="contained">Vis flere</Button>
+        </Box>
         <p />
-        {/* <ListBadDrivers /> */}
-        <Button variant="contained">Vis flere</Button>
-        <p />
-      </main>
+      </Container>
     </ThemeProvider>
   )
 }
