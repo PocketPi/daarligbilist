@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 const defaultSettings = {
   DEV_REACT_APP_BASE_URL: 'http://localhost:3000/api',
-  REACT_APP_BASE_URL: 'https://daarligbilist.dk/api'
+  REACT_APP_BASE_URL: 'http://daarligbilist.dk/api'
 }
 const settings = { defaultSettings }
 
