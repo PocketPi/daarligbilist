@@ -22,6 +22,7 @@ server.get('/api/top10', async (_req, res) => {
     orderBy: {
       _count: {
         licensplate: 'desc'
+
       }
     },
     take: 10,

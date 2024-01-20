@@ -24,7 +24,6 @@ export default function ListBadDrivers (): any {
   if (data === undefined) {
     return <div>loading...</div>
   }
-  console.log("listBadDrivers data: ", data)
   return (
     <Table size="small">
       <TableHead>
@@ -34,12 +33,12 @@ export default function ListBadDrivers (): any {
         </StyledTableRow>
       </TableHead>
       <TableBody>
-        {data.map((row) => (
+        {data.badDrivers.map((row) => (
           <StyledTableRow key={row.licensplate}>
             <StyledTableCell component="th" scope="row">
               {row.licensplate}
             </StyledTableCell>
-            <StyledTableCell align="right">{row._count.licensplate}</StyledTableCell>
+            <StyledTableCell align="right">{row.count}</StyledTableCell>
           </StyledTableRow>
         ))}
       </TableBody>

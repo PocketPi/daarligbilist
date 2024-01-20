@@ -1,4 +1,3 @@
-import { response } from 'express'
 import { type APIResponseInterface, type BadDriverReportInterface } from '../shared/types'
 import axios, { type AxiosResponse } from 'axios'
 import { useEffect, useState } from 'react'
@@ -18,20 +17,17 @@ const api = axios.create({
   headers: { 'Content-Type': 'application/json' }
 })
 
-export function getBadDrivers (): APIResponseInterface | string {
-  const [data, setData] = useState([])
+export const getBadDrivers = () => {
+  const [data, setData] = useState<APIResponseInterface>()
 
-  const getData = async () => {
-    try {
-      const response = await api.get('/top10')
-      setData(response.data)
-    } catch (error) {
-      console.log('getBadDrivers error: ', error)
-      return error
-    }
-  }
   useEffect(() => {
-    getData()
+    api.get<APIResponseInterface>('/top10')
+      .then((response) => {
+        setData(response.data)
+      }).catch((error) => {
+        console.log('getBadDrivers error: ', error)
+        return error
+      })
   }, [])
   return data
 }
