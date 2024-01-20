@@ -21,8 +21,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function ListBadDrivers (): any {
   const data = getBadDrivers()
-  // if (data.length === 0) return null
-
+  if (data === undefined) {
+    return <div>loading...</div>
+  }
+  console.log("listBadDrivers data: ", data)
   return (
     <Table size="small">
       <TableHead>
@@ -37,7 +39,7 @@ export default function ListBadDrivers (): any {
             <StyledTableCell component="th" scope="row">
               {row.licensplate}
             </StyledTableCell>
-            <StyledTableCell align="right">{row.count}</StyledTableCell>
+            <StyledTableCell align="right">{row._count.licensplate}</StyledTableCell>
           </StyledTableRow>
         ))}
       </TableBody>
