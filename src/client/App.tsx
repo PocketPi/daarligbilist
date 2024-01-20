@@ -76,6 +76,7 @@ function App (): any {
   return (
     <ThemeProvider theme={darkTheme}>
       <Container className="App" sx={{ flexDirection: 'column', display: 'flex' }}>
+        <p />
         <Typography variant="h2">{websideTitle}</Typography>
         <p />
         <Box sx={{ maxWidth: 480, alignSelf: 'center' }}>
