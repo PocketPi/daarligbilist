@@ -1,6 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableRow, styled, tableCellClasses } from '@mui/material'
 import React from 'react'
 import { getBadDrivers } from './queries'
+import { type BadDriverInfoInterface } from '../shared/types'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -23,25 +24,26 @@ export default function ListBadDrivers (): any {
   const data = getBadDrivers()
   if (data === undefined) {
     return <div>loading...</div>
-  }
-  return (
-    <Table size="small">
-      <TableHead>
-        <StyledTableRow>
-          <StyledTableCell>Nummerplade</StyledTableCell>
-          <StyledTableCell align="right">Antal</StyledTableCell>
-        </StyledTableRow>
-      </TableHead>
-      <TableBody>
-        {data.badDrivers.map((row) => (
-          <StyledTableRow key={row.licensplate}>
-            <StyledTableCell component="th" scope="row">
-              {row.licensplate}
-            </StyledTableCell>
-            <StyledTableCell align="right">{row.count}</StyledTableCell>
+  } else {
+    return (
+      <Table size="small">
+        <TableHead>
+          <StyledTableRow>
+            <StyledTableCell>Nummerplade</StyledTableCell>
+            <StyledTableCell align="right">Antal</StyledTableCell>
           </StyledTableRow>
-        ))}
-      </TableBody>
-    </Table>
-  )
+        </TableHead>
+        <TableBody>
+          {Array.isArray(data) && data.map((row: BadDriverInfoInterface) => (
+            <StyledTableRow key={row.licensplate}>
+              <StyledTableCell component="th" scope="row">
+                {row.licensplate}
+              </StyledTableCell>
+              <StyledTableCell align="right">{row.count}</StyledTableCell>
+            </StyledTableRow>
+          ))}
+        </TableBody>
+      </Table>
+    )
+  }
 }
