@@ -21,8 +21,9 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         "/api": {
-          target: process.env.VITE_API_BASE_URL,
+          target: "http://daarligbilist.dk:3000",
           changeOrigin: true,
+          secure: false,
         },
       },
     },
