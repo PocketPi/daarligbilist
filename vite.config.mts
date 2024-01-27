@@ -21,7 +21,7 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         "/api": {
-          target: "http://daarligbilist.dk:3000",
+          target: "http://daarligbilist.dk",
           changeOrigin: true,
           secure: false,
         },

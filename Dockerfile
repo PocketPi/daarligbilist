@@ -18,7 +18,7 @@ COPY index.html /app
 ENV MONGODB_USERNAME=user
 ENV MONGODB_PASSWORD=password
 ENV MONGO_INITDB_DATABASE=daarligbilist
-ENV DATABASE_URL="postgresql://user:password@server:5432/daarligbilist?schema=public"
+ENV DATABASE_URL="postgresql://user:password@192.168.1.9:5432/daarligbilist?schema=public"
 
 RUN yarn prisma generate
 RUN yarn build
