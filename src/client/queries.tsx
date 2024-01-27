@@ -23,7 +23,11 @@ export const getBadDrivers = () => {
   useEffect(() => {
     api.get<APIResponseInterface>('/top10')
       .then((response) => {
-        setData(response.data)
+        if (response.data === undefined) {
+          throw new Error('getBadDrivers: response.data is undefined')
+        } else {
+          setData(response.data)
+        }
       }).catch((error) => {
         console.log('getBadDrivers error: ', error)
         return error

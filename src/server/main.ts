@@ -31,7 +31,9 @@ server.get('/api/top10', async (_req, res) => {
     }
   })
 
-  res.status(200).json(badDrivers)
+  const data = badDrivers.map((item) => { return { licensplate: item.licensplate, count: item._count.licensplate } })
+
+  res.status(200).json(data)
 })
 
 server.post('/api/report_bad_driver', async (req, res, next) => {
