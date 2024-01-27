@@ -83,7 +83,7 @@ function App (): any {
           <ReportBadDriverForm />
           <p />
           <ListBadDrivers />
-          <Button variant="contained">Vis flere</Button>
+          {/* <Button variant="contained">Vis flere</Button> */}
         </Box>
         <p />
       </Container>
