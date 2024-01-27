@@ -2,71 +2,71 @@ import { type BadDriverReportInterface } from '../shared/types'
 
 export const testData: BadDriverReportInterface[] = [
   {
-    licensplate: 'ABC123',
+    licensplate: 'AB12346',
     reason: 'Speeding'
   },
   {
-    licensplate: 'ABC123',
+    licensplate: 'AB12346',
     reason: 'Speeding'
   },
   {
-    licensplate: 'ABC123',
+    licensplate: 'AB12346',
     reason: 'Speeding'
   },
   {
-    licensplate: 'ABC123',
+    licensplate: 'AB12346',
     reason: 'Speeding'
   },
   {
-    licensplate: 'ABC123',
+    licensplate: 'AB12346',
     reason: 'Speeding'
   },
   {
-    licensplate: 'ABC123',
+    licensplate: 'AB12346',
     reason: 'Speeding'
   },
   {
-    licensplate: 'ABC123',
+    licensplate: 'AB12346',
     reason: 'Speeding'
   },
   {
-    licensplate: 'ABC123',
+    licensplate: 'AB12346',
     reason: 'Speeding'
   },
   {
-    licensplate: 'DEF456',
+    licensplate: 'DE45678',
     reason: 'Speeding'
   },
   {
-    licensplate: 'GHI789',
+    licensplate: 'GH78901',
     reason: 'Speeding'
   },
   {
-    licensplate: 'JKL012',
+    licensplate: 'JK01234',
     reason: 'Speeding'
   },
   {
-    licensplate: 'MNO345',
+    licensplate: 'MN34567',
     reason: 'Speeding'
   },
   {
-    licensplate: 'PQR678',
+    licensplate: 'PQ67890',
     reason: 'Speeding'
   },
   {
-    licensplate: 'STU901',
+    licensplate: 'SU90144',
     reason: 'Speeding'
   },
   {
-    licensplate: 'VWX234',
+    licensplate: 'VX234534',
     reason: 'Speeding'
   },
   {
-    licensplate: 'YZA567',
+    licensplate: 'YZ56712',
     reason: 'Speeding'
   },
   {
-    licensplate: 'BCD890',
+    licensplate: 'BD89099',
     reason: 'Speeding'
   }
 ]

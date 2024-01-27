@@ -1,6 +1,6 @@
 import { Table, TableBody, TableCell, TableHead, TableRow, styled, tableCellClasses } from '@mui/material'
 import React from 'react'
-import { getBadDrivers } from './queries'
+import { getBadDrivers } from './Queries'
 import { type BadDriverInfoInterface } from '../shared/types'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -35,9 +35,9 @@ export default function ListBadDrivers (): any {
         </TableHead>
         <TableBody>
           {Array.isArray(data) && data.map((row: BadDriverInfoInterface) => (
-            <StyledTableRow key={row.licensplate}>
+            <StyledTableRow key={row.licensplate.toUpperCase()}>
               <StyledTableCell component="th" scope="row">
-                {row.licensplate}
+                {row.licensplate.toUpperCase()}
               </StyledTableCell>
               <StyledTableCell align="right">{row.count}</StyledTableCell>
             </StyledTableRow>

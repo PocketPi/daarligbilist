@@ -17,7 +17,7 @@ const api = axios.create({
   headers: { 'Content-Type': 'application/json' }
 })
 
-export const getBadDrivers = () => {
+export const getBadDrivers = (): APIResponseInterface | undefined => {
   const [data, setData] = useState<APIResponseInterface>()
 
   useEffect(() => {

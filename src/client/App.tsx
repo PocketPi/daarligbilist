@@ -6,7 +6,7 @@ import darkTheme from './Theme'
 import { useFormik } from 'formik'
 import { type BadDriverReportInterface } from '../shared/types'
 import * as yup from 'yup'
-import { reportBadDriver } from './queries'
+import { reportBadDriver } from './Queries'
 
 const websideTitle = 'DÅRLIG BILIST'
 
@@ -19,9 +19,14 @@ const validationSchema = yup.object({
   licensplate: yup
     .string()
     .required('Nummerplade er påkrævet')
+    .min(2, 'Gylding nummerplade krævet, min 2 karakterer')
     .max(7, 'Maks 7 tegn')
     .matches(/^[a-zA-Z0-9]+$/, 'Kun bogstaver og tal'),
-  reason: yup.string().required('Grund er påkrævet').max(255, 'Maks 255 tegn')
+  reason: yup
+    .string()
+    .required('Grund er påkrævet')
+    .min(10, 'Gylding grund krævet, min 10 karakterer')
+    .max(255, 'Maks 255 tegn')
 })
 
 const ReportBadDriverForm = (): any => {
