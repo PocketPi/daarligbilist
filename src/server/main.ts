@@ -7,6 +7,8 @@ import cors from 'cors'
 import { type BadDriverReportInterface } from '../shared/types'
 import { PrismaClient } from '@prisma/client'
 import { Validator, ValidationError, type AllowedSchema } from 'express-json-validator-middleware'
+import path from 'path'
+import favicon from 'serve-favicon'
 
 dotenv.config()
 
@@ -48,6 +50,7 @@ const server = express()
 server.use(express.json())
 server.use(cors())
 server.use(validationErrorMiddleware)
+server.use(favicon(path.join(process.cwd(), 'public', 'favicon.png')))
 
 server.get('/api/top10', async (_req, res) => {
   const badDrivers = await prisma.bad_drivers.groupBy({
