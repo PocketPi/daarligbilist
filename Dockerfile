@@ -7,8 +7,8 @@ COPY yarn.lock /app
 
 RUN yarn
 
-COPY prisma /app
-COPY public /app
+COPY prisma /app/prisma
+COPY public /app/public
 COPY src/shared /app/src/shared
 COPY src/server /app/src/server
 COPY src/client /app/src/client

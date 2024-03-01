@@ -82,7 +82,7 @@ function App (): any {
     <ThemeProvider theme={darkTheme}>
       <Container className="App" sx={{ flexDirection: 'column', display: 'flex' }}>
         <p />
-        asdf<Typography variant="h2">{websideTitle}</Typography>
+        <Typography variant="h2">{websideTitle}</Typography>
         <p />
         <Box sx={{ maxWidth: 480, alignSelf: 'center' }}>
           <ReportBadDriverForm />
